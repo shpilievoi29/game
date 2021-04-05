@@ -19,8 +19,6 @@ def play():
         try:
             print(player.attack(enemy))
             print(player.defense(enemy))
-            print(f'You have {player.lives} lives')
-            print(f'Enemy has {enemy.lives} lives')
         except EnemyDown:
             enemy = Enemy(enemy.level + 1)
             print(f'!!! ENEMY DOWN !!!\nAnother enemy appears! (level {enemy.level}).')
@@ -31,6 +29,7 @@ if __name__ == '__main__':
     try:
         play()
     except GameOver as err:
+        GameOver.save_score(err.player_name, err.score)
         print(f"Game Over! \n {err.player_name} has got {err.score} scores")
     except KeyboardInterrupt:
         pass

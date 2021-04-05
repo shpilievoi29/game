@@ -3,12 +3,17 @@ from datetime import datetime
 
 
 class GameOver(Exception):
-    """Created GameOver class from Exceptions with a
-    ttributes player_name, scores """
+    """Created GameOver class from Exceptions with
+        attributes player_name, scores """
 
     def __init__(self, player_name, score):
+        super().__init__(player_name, score)
         self.player_name = player_name
         self.score = score
+
+    @staticmethod
+    def save_score(player_name, score):
+        """this method save score to score.txt"""
         with open('scores.txt', 'a+') as file_scores:
             file_scores.write(f'Name:{player_name} Score:{score} Data:{datetime.now()}\n')
 

@@ -8,6 +8,7 @@ from exceptions import EnemyDown, GameOver
 import settings
 
 
+
 class Enemy:
     """Create class Enemy with its attributes"""
     def __init__(self, level):
@@ -45,6 +46,10 @@ class Player:
     @staticmethod
     def fight(attack, defense):
         """Attack class descriptions. Hero Points Rules"""
+        if attack >= 4:
+            raise KeyboardInterrupt
+        if defense >= 4:
+            raise KeyboardInterrupt
         if attack == defense:
             return 0
         if attack == Attacks.WIZARD.value or defense == Attacks.WARRIOR.value:
